@@ -1,0 +1,8 @@
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/Main.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/ValueObject/OrderId.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/ValueObject/OrderStatus.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/ValueObject/BaseId.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/ValueObject/Money.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/entity/BaseEntity.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/entity/AggregateRoot.java
+/home/khumbucyber/projects/food-ordering-system/common/common-domain/src/main/java/com/food/ordering/system/domain/ValueObject/ProductId.java

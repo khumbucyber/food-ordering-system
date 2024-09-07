@@ -19,8 +19,6 @@
     <modules>
         <module>order-service</module>
         <module>common</module>
-        <module>common-domain</module>
-        <module>common</module>
     </modules>
 
     <properties>
