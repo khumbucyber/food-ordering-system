@@ -6,6 +6,8 @@ import java.math.RoundingMode;
 public class Money {
     private final BigDecimal amount;
 
+    public static final Money ZERO = new Money(BigDecimal.ZERO);
+
     public Money(BigDecimal amount) {
         this.amount = amount;
     }
@@ -16,22 +18,24 @@ public class Money {
 
     public boolean isGreaterThanZero() {
         return this.amount != null && this.amount.compareTo(BigDecimal.ZERO) > 0;
+        // 小数点を持つBigDicimalでは0とのequalではなく、compareToで比較
     }
 
     public boolean isGreaterThan(Money money) {
         return this.amount != null && this.amount.compareTo(money.getAmount()) > 0;
     }
 
+    // パラメータで受け取った額を加算して、新しいmoneyオブジェクトを返す
     public Money add(Money money) {
         return new Money(setScale(this.amount.add(money.getAmount())));
     }
 
-    // 引く
+    // パラメータで受け取った額を減算して、新しいmoneyオブジェクトを返す
     public Money substract(Money money) {
         return new Money(setScale(this.amount.subtract(money.getAmount())));
     }
 
-    // 掛ける
+    // パラメータで受け取った数を掛け算して、新しいmoneyオブジェクトを返す
     public Money multiply(int multiplier) { // multiplier:掛ける数
         return new Money(setScale(this.amount.multiply(new BigDecimal(multiplier))));
     }
