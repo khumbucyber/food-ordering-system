@@ -14,6 +14,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
 
     // 外部クラスのコンストラクタ
     private Restaurant(Builder builder) {
+        super.setId(builder.restaurantId);
         this.products = builder.products;
         this.active = builder.active;
     }
