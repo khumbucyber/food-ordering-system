@@ -69,17 +69,17 @@ public class OrderItem extends BaseEntity<OrderItemId> {
             this.quantity = quantity;
             return this;
         }
-        public Builder setprice(Money price) {
+        public Builder setPrice(Money price) {
             this.price = price;
             return this;
         }
-        public Builder setsubTotal(Money subTotal) {
+        public Builder setSubTotal(Money subTotal) {
             this.subTotal = subTotal;
             return this;
         }
         // OrderItemクラスのprivateなコンストラクタを呼んで
         // OrderItemオブジェクトを生成するメソッド
-        public OrderItem buildObject() {
+        public OrderItem build() {
             return new OrderItem(this);
         }
     }

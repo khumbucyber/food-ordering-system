@@ -151,6 +151,12 @@ public class Order extends AggregateRoot<OrderId> {
 
     // builderオブジェクトを生成するためのメソッドは一旦作成しないでおく。
     // なくても new OrderItem.Builder() でデフォルトコンストラクタを呼びオブジェクト生成はできる
+    // ↓やっぱり書いた
+    // 内部クラスをnewするメソッド
+    // これを最初書かなかった。これ要るの？
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public static class Builder {
         private OrderId orderId;
@@ -199,7 +205,7 @@ public class Order extends AggregateRoot<OrderId> {
             this.failureMessages = failureMessages;
             return this;
         }
-        public Order buildObject() {
+        public Order build() {
             return new Order(this);
         }
     } 

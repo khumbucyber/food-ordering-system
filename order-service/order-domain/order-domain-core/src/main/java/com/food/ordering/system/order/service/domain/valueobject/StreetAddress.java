@@ -1,17 +1,20 @@
 // StreetAddressからOrderAddressに変更
 // 19.でOrderAddressクラスが登場したため、間違ってたと想定
+// ↓
+// com.food.ordering.system.order.service.domain.dto.create.OrderAddress
+// と混同していたことに気付いたため、StreetAddressに戻した。
 
 package com.food.ordering.system.order.service.domain.valueobject;
 
 import java.util.UUID;
 
-public class OrderAddress {
+public class StreetAddress {
     private final UUID id;
     private final String street;
     private final String postalCode;
     private final String city;
 
-    public OrderAddress(UUID id, String street, String postalCode, String city) {
+    public StreetAddress(UUID id, String street, String postalCode, String city) {
         this.id = id;
         this.street = street;
         this.postalCode = postalCode;
@@ -52,7 +55,7 @@ public class OrderAddress {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OrderAddress other = (OrderAddress) obj;
+        StreetAddress other = (StreetAddress) obj;
         if (street == null) {
             if (other.street != null)
                 return false;

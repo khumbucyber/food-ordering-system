@@ -6,9 +6,6 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
-import com.food.ordering.system.order.service.domain.entity.OrderItem;
-import com.food.ordering.system.order.service.domain.valueobject.OrderAddress;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +14,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class CreateOrderComman {
+public class CreateOrderCommand {
     @NotNull
     private final UUID customerId;
     @NotNull
@@ -25,7 +22,7 @@ public class CreateOrderComman {
     @NotNull
     private final BigDecimal price;
     @NotNull
-    private final List<OrderItem> items;
+    private final List<OrderItemDto> items;
     @NotNull
-    private final OrderAddress address;
+    private final OrderAddressDto address;
 }

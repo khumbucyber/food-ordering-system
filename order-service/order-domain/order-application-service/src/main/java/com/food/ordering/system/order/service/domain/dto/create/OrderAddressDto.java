@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class OrderAddress {
+public class OrderAddressDto {
     @NotNull
     @Max(value = 50)
     private final String street;
