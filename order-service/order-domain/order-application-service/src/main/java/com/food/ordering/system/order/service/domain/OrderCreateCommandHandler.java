@@ -35,6 +35,7 @@ public class OrderCreateCommandHandler {
 
     private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
 
+    
     // コンストラクタインジェクション
     public OrderCreateCommandHandler(OrderDataMapper orderDataMapper, 
         OrderCreateHelper orderCreateHelper,
