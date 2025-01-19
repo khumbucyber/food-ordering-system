@@ -1,4 +1,4 @@
-package com.food.ordering.system.order.service.domain.ports;
+package com.food.ordering.system.order.service.domain;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -6,9 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.food.ordering.system.order.service.domain.OrderDomainService;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
-import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.order.service.domain.entity.Customer;
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
@@ -21,25 +19,18 @@ import com.food.ordering.system.order.service.domain.ports.output.repository.Res
 
 import lombok.extern.slf4j.Slf4j;
 
-// OrderApplicationServiceから移譲され処理を行うクラス
-// Domainサービスを呼び出す。
 @Slf4j
 @Component
-public class OrderCreateCommandHandler {
+public class OrderCreateHelper {
 
-    // ドメインサービス
     private final OrderDomainService orderDomainService;
-
-    // リポジトリ
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
     private final RestaurantRepository restaurantRepository;
-
-    // データマッパー(入/出力⇔エンティティ)
     private final OrderDataMapper orderDataMapper;
 
     // コンストラクタインジェクション
-    public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository,
+    public OrderCreateHelper(OrderDomainService orderDomainService, OrderRepository orderRepository,
             CustomerRepository customerRepository, RestaurantRepository restaurantRepository,
             OrderDataMapper orderDataMapper) {
         this.orderDomainService = orderDomainService;
@@ -50,20 +41,18 @@ public class OrderCreateCommandHandler {
     }
 
     @Transactional
-    public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
-        // Orderの顧客が存在するか？
+    public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         Restaurant restaurant = checkRestaurant(createOrderCommand);
         Order order = orderDataMapper.creatOrderCommandToOrder(createOrderCommand);
         // orderを作成した後、paymentServiceをトリガーするイベントを発生させたい。
         // これらはAtomicにする必要がある。これを実現するのがsagaとoutbox
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
-        Order orderResult = saveOrder(order);
-        log.info("Order is created with id: {}", orderResult.getId().getValue());
-        return orderDataMapper.OrderToCreateOrder(orderResult);
+        saveOrder(order);
+        log.info("Order is created with id: {}", order.getId().getValue());
+        return orderCreatedEvent;
+    }
 
-    }   
-        
     private void checkCustomer(UUID customerId) {
         Optional<Customer> customer = customerRepository.findCustomer(customerId);
         if (customer.isEmpty()) {
