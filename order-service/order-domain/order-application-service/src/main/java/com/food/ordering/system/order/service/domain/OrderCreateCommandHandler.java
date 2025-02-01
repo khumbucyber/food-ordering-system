@@ -1,4 +1,4 @@
-package com.food.ordering.system.order.service.domain.ports;
+package com.food.ordering.system.order.service.domain;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.food.ordering.system.order.service.domain.OrderDomainService;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.order.service.domain.entity.Customer;
@@ -38,15 +37,19 @@ public class OrderCreateCommandHandler {
     // データマッパー(入/出力⇔エンティティ)
     private final OrderDataMapper orderDataMapper;
 
+    // イベントパブリッシャー
+    private final ApplicationDomainEventPublisher applicationDomainEventPublisher;
+
     // コンストラクタインジェクション
     public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository,
             CustomerRepository customerRepository, RestaurantRepository restaurantRepository,
-            OrderDataMapper orderDataMapper) {
+            OrderDataMapper orderDataMapper, ApplicationDomainEventPublisher applicationDomainEventPublisher) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.restaurantRepository = restaurantRepository;
         this.orderDataMapper = orderDataMapper;
+        this.applicationDomainEventPublisher = applicationDomainEventPublisher;
     }
 
     @Transactional
@@ -60,8 +63,8 @@ public class OrderCreateCommandHandler {
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
         Order orderResult = saveOrder(order);
         log.info("Order is created with id: {}", orderResult.getId().getValue());
+        applicationDomainEventPublisher.publish(orderCreatedEvent);
         return orderDataMapper.OrderToCreateOrder(orderResult);
-
     }   
         
     private void checkCustomer(UUID customerId) {
