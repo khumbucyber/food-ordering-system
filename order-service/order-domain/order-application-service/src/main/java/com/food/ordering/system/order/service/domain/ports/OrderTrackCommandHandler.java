@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import com.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
 import com.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
+import com.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
+import com.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,8 +14,16 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class OrderTrackCommandHandler {
 
-    public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
-            return null;
+    private final OrderDataMapper orderDataMapper;
+
+    private final OrderRepository orderRepository;
+
+    public OrderTrackCommandHandler(OrderDataMapper orderDataMapper, OrderRepository orderRepository) {
+        this.orderDataMapper = orderDataMapper;
+        this.orderRepository = orderRepository;
     }
 
+    public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
+        orderRepository.findByTrackingId(null)
+    }
 }
