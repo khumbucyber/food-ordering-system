@@ -1,4 +1,4 @@
-package com.food.ordering.system.order.service.domain.ports;
+package com.food.ordering.system.order.service.domain;
 
 import org.springframework.stereotype.Component;
 
