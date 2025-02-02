@@ -14,6 +14,7 @@ import com.food.ordering.system.order.service.domain.dto.create.OrderAddressDto;
 // dtoとvalueobjectで同一のファイル名OrderItemとしているため、2つを同時にimportすることができない。
 // https://chatgpt.com/share/67838b7a-3f60-800e-9ecd-19823d00d652
 import com.food.ordering.system.order.service.domain.dto.create.OrderItemDto;
+import com.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.food.ordering.system.order.service.domain.entity.OrderItem;
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.entity.Product;
@@ -49,6 +50,14 @@ public class OrderDataMapper {
         return CreateOrderResponse.builder()
             .orderTrackingId(order.getTrackingId().getValue())
             .orderStatus(order.getOrderStatus())
+            .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+            .orderTrackingId(order.getTrackingId().getValue())
+            .orderStatus(order.getOrderStatus())
+            .failureMessages(order.getFailureMessages())
             .build();
     }
 
