@@ -25,7 +25,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
-        validateRestaurant(restaurant);
+        validateRestaurant(restaurant); // restaurantがactiveか？
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
         order.initializeOrder();

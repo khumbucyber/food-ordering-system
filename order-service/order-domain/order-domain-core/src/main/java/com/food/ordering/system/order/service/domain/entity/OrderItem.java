@@ -5,6 +5,9 @@ import com.food.ordering.system.domain.ValueObject.OrderId;
 import com.food.ordering.system.domain.entity.BaseEntity;
 import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class OrderItem extends BaseEntity<OrderItemId> {
     private OrderId orderId;
     private final Product product;
@@ -12,9 +15,17 @@ public class OrderItem extends BaseEntity<OrderItemId> {
     private final Money price;
     private final Money subTotal;
 
-    public void initializeOrderItem(OrderId orderId, OrderItemId orderItemId) {
+    // Orderエンティティのみからアクセスするので、パッケージプライベートにする(Udemy-15 2:45)
+    void initializeOrderItem(OrderId orderId, OrderItemId orderItemId) {
         this.orderId = orderId;
         super.setId(orderItemId);
+    }
+
+    public boolean isPriceValid() {
+        log.info("orderItemのprice:{}, productのprice:{}", price.getAmount(), product.getPrice());
+        return price.isGreaterThanZero() &&
+//                price.equals(product.getPrice()) &&
+                price.multiply(quantity).equals(subTotal);
     }
 
     // privateなコンストラクタ

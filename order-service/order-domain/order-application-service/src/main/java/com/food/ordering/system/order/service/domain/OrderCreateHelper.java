@@ -48,8 +48,12 @@ public class OrderCreateHelper {
         // orderを作成した後、paymentServiceをトリガーするイベントを発生させたい。
         // これらはAtomicにする必要がある。これを実現するのがsagaとoutbox
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
-        saveOrder(order);
+        // debug用ログ
+        log.info("orderDomainService instance: {}", orderDomainService.getClass().getName());
+        // testCreateOrder()でorderIdのぬるぽ発生のため、ここでorderを受け取って上書きするように修正()
+        order = saveOrder(order);
         log.info("Order is created with id: {}", order.getId().getValue());
+        log.info("OrderCreatedEvent: OrderId: {}", orderCreatedEvent.getOrder().getId().getValue());
         return orderCreatedEvent;
     }
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.food.ordering.system.domain.ValueObject.CustomerId;
 import com.food.ordering.system.domain.ValueObject.Money;
 import com.food.ordering.system.domain.ValueObject.ProductId;
@@ -21,6 +23,7 @@ import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.food.ordering.system.order.service.domain.valueobject.StreetAddress;
 
+@Component
 public class OrderDataMapper {
     public Restaurant createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand) {
         // streamを含む解説
@@ -46,10 +49,11 @@ public class OrderDataMapper {
             .build();
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
         return CreateOrderResponse.builder()
             .orderTrackingId(order.getTrackingId().getValue())
             .orderStatus(order.getOrderStatus())
+            .message(message)
             .build();
     }
 
@@ -72,7 +76,7 @@ public class OrderDataMapper {
 
     private List<OrderItem> orderItemToOrderItemEntities(List<OrderItemDto> orderItems) {
         return orderItems.stream()
-.map(orderItemDto ->  
+            .map(orderItemDto ->  
                 OrderItem.builder()    
                     .setProduct(new Product(new ProductId(orderItemDto.getProductId())))
                     .setPrice(new Money(orderItemDto.getPrice()))

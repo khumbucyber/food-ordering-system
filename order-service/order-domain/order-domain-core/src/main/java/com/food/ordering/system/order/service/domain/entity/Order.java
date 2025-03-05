@@ -11,6 +11,7 @@ import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
 import com.food.ordering.system.order.service.domain.valueobject.StreetAddress;
 import com.food.ordering.system.order.service.domain.valueobject.TrackingId;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -103,13 +104,19 @@ public class Order extends AggregateRoot<OrderId> {
             return orderItem.getSubTotal();
         }).reduce(Money.ZERO, Money::add);
 
-        if (price.equals(orderItemsTotal)) {
+        if (!price.equals(orderItemsTotal)) {
             throw new OrderDomainException("Total Price: " + price.getAmount()
                 + " is not equal to Order items total: " + orderItemsTotal.getAmount() + " !");
         }
     }
 
     private void validateItemPrice(OrderItem orderItem) {
+        // Udemy-25のtest class作成の途中(3:43)出てきたが、実装されていなかったので実装した
+        // Udemy-15 9:30～を見て実装
+        if (!orderItem.isPriceValid()) {
+            throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount() +
+                " is not valid for product " + orderItem.getProduct().getId().getValue());
+        }
     }
 
     private Order(Builder builder) {
