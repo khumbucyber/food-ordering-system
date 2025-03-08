@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Producer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -51,6 +49,7 @@ public class KafkaProducerConfig<K extends Serializable, V extends SpecificRecor
     @Bean
     public KafkaTemplate<K, V> kafkaTemplate() {
         // KafkaTemplateはKafkaクラスターにデータを送信するためのラッパークラス
+        // A.) KafkaTemplateはKafka Producerをラップし、kafka上でデータを簡単に生成するメソッドを提供するSpringコンポーネントです。
         return new KafkaTemplate<>(producerFactory());
     }
 }
