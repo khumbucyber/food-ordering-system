@@ -78,10 +78,10 @@ public class OrderDataMapper {
         return orderItems.stream()
             .map(orderItemDto ->  
                 OrderItem.builder()    
-                    .setProduct(new Product(new ProductId(orderItemDto.getProductId())))
-                    .setPrice(new Money(orderItemDto.getPrice()))
-                    .setQuantity(orderItemDto.getQuantity())
-                    .setSubTotal(new Money(orderItemDto.getSubTotal()))
+                    .product(new Product(new ProductId(orderItemDto.getProductId())))
+                    .price(new Money(orderItemDto.getPrice()))
+                    .quantity(orderItemDto.getQuantity())
+                    .subTotal(new Money(orderItemDto.getSubTotal()))
                     .build()).collect(Collectors.toList()); // ここの理解要
     }
 }
