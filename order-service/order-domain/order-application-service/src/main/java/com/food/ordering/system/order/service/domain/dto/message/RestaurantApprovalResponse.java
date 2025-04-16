@@ -18,6 +18,6 @@ public class RestaurantApprovalResponse {
     private String orderId;
     private String restaurantId;
     private Instant createdAt;
-    private OrderApprovalStatus OrderApprovalStatus;
+    private OrderApprovalStatus orderApprovalStatus;
     private List<String> failureMessages;
 }

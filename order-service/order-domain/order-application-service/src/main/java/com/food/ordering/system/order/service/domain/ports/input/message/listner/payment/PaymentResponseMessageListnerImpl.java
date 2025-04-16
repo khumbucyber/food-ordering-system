@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PaymentResponseMessageListnerImpl implements PaymentResponseMessageListner{
 
     @Override
-    public void pamentCompleted(PaymentResponse paymentResponse) {
+    public void paymentCompleted(PaymentResponse paymentResponse) {
         
     }
 
