@@ -1,0 +1,5 @@
+@startuml name
+Client -> ServiceInterface : doSomething()
+ServiceInterface --> ServiceImpl : delegate
+ServiceImpl -> ServiceImpl : execute logic
+@enduml

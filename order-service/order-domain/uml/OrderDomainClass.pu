@@ -1,0 +1,14 @@
+@startuml
+
+interface OrderApplicationService {
+
+}
+
+class OrderApplicationServiceImpl {
+    +createOrder(CreateOrderCommand) : CreateOrderRespons
+    +trackOrder(TrackOrderQuery) : TrackOrderResponse
+}
+
+OrderApplicationService <|.. OrderApplicationServiceImpl
+
+@enduml

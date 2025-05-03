@@ -1,0 +1,30 @@
+@startuml aaa
+
+class OrderCreateCommandHandler {
+
+}
+
+interface OrderCreatedPaymentRequestMessagePublisher {
+    +publish() : void
+}
+
+class CreateOrderKafkaMessagePublisher {
+    +publish() : void
+}
+
+class DataMapper {
+    +orderCreatedEventToPaymentRequestAvroModel() : PaymentRequestAvroModel
+}
+
+class KafkaProducer {
+    +send() : void
+}
+
+OrderCreatedPaymentRequestMessagePublisher <|.. CreateOrderKafkaMessagePublisher
+
+OrderCreatedPaymentRequestMessagePublisher <.. OrderCreateCommandHandler
+
+DataMapper <.. CreateOrderKafkaMessagePublisher
+KafkaProducer <.. CreateOrderKafkaMessagePublisher
+
+@enduml

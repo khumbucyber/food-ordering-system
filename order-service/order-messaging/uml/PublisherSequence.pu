@@ -1,0 +1,9 @@
+@startuml PublisherSequence
+hide empty members
+
+OrderCreateCommandHandler -> OrderCreatedPaymentRequestMessagePublisher : publish
+OrderCreatedPaymentRequestMessagePublisher --> CreateOrderKafkaMessagePublisher : implements
+CreateOrderKafkaMessagePublisher -> OrderMessagingDataMapper : orderCreatedEventToPaymentRequestAvroModel
+CreateOrderKafkaMessagePublisher -> KafkaProducer : send
+
+@enduml
