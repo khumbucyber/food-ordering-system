@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.food.ordering.system.domain.ValueObject.Money;
 import com.food.ordering.system.domain.ValueObject.ProductId;
 import com.food.ordering.system.domain.ValueObject.RestaurantId;
@@ -12,6 +14,7 @@ import com.food.ordering.system.order.service.dataaccess.restaurant.exception.Re
 import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
 
+@Component
 public class RestaurantDataAccessMapper {
 
     public List<UUID> restaurantToRestaurantProducts(Restaurant restaurant) {
@@ -29,6 +32,7 @@ public class RestaurantDataAccessMapper {
     // Restaurantを作成し、returnする。
     // ※1:StreamクラスのfindFirstメソッドでEntityの1件目をピックアップ
     // Restaurantは1:NでRestaurantとProductを保持する。
+    // RestaurantIDが複数混在しないことが前提（チェックなし）となっている点は注意
     public Restaurant restaurantEntityToRestaurant(List<RestaurantEntity> restaurantEntities) {
         RestaurantEntity restaurantEntity = 
             restaurantEntities.stream().findFirst().orElseThrow(() ->

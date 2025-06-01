@@ -3,7 +3,9 @@ package com.food.ordering.system.order.service.application.rest;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,7 @@ public class OrderController {
         this.orderApplicationService = orderApplicationService;
     }
 
+    @PostMapping    // メソッドレベルのHTTPマッピングアノテーションが抜けていたようなので追加
     public ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderCommand createOrderCommand) {
         log.info("Creating order for customer: {} at restaurant: {}", 
             createOrderCommand.getCustomerId(), createOrderCommand.getRestaurantId());
@@ -35,6 +38,7 @@ public class OrderController {
         return ResponseEntity.ok(createOrderResponse);
     }
 
+    @GetMapping("/{trackingId}")        // メソッドレベルのHTTPマッピングアノテーションが抜けていたようなので追加
     public ResponseEntity<TrackOrderResponse> getOrderByTrackingId(@PathVariable UUID trackingId) {
         TrackOrderResponse trackOrderResponse = orderApplicationService.trackOrder(TrackOrderQuery.builder().orderTrackingId(trackingId).build());
         log.info("Returning order status with tracking id: {}", trackOrderResponse.getOrderTrackingId());

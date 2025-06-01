@@ -8,6 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*
+ * OrderItemEntityIdは、OrderItemEntityのIDを表すクラスで、
+ * OrderItemEntityのIDは、OrderEntityのIDとOrderItemEntityのIDの組み合わせで一意になる。
+ * この複数列の主キーに対して、本クラスを作成する。
+ * Serializableを実装する必要がある。識別子はエンティティを永続化するときにシリアル化できる必要があるため。
+ * (シリアル化とは、オブジェクトをバイトストリームに変換して保存または送信できるようにするプロセス)
+ */
+
 @Getter
 @Setter
 @Builder

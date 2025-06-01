@@ -17,13 +17,15 @@ import lombok.Setter;
 public class RestaurantEntityId implements Serializable {
 
     private UUID restaurantId;
-    private UUID orderId;
+    // productIdかな？？？？？？？？？？？？？？？？？？？？
+    // private UUID orderId;
+    private UUID productId;
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((restaurantId == null) ? 0 : restaurantId.hashCode());
-        result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+        result = prime * result + ((productId == null) ? 0 : productId.hashCode());
         return result;
     }
     @Override
@@ -40,10 +42,10 @@ public class RestaurantEntityId implements Serializable {
                 return false;
         } else if (!restaurantId.equals(other.restaurantId))
             return false;
-        if (orderId == null) {
-            if (other.orderId != null)
+        if (productId == null) {
+            if (other.productId != null)
                 return false;
-        } else if (!orderId.equals(other.orderId))
+        } else if (!productId.equals(other.productId))
             return false;
         return true;
     }

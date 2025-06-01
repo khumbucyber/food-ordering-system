@@ -10,6 +10,13 @@ import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.food.ordering.system.order.service.domain.valueobject.TrackingId;
 
+/*
+ * ドメイン層のapplicationサービスのoutputポートであるOrderRepositoryを実装するクラス
+ * OrderRepositoryは、ドメイン層のOrderエンティティをJPAエンティティに変換し、
+ * データベースに保存する責務を持つ。
+ * また、TrackingIdでOrderを検索する機能も持つ。
+ */
+
 @Component
 public class OrderRepositoryImpl implements OrderRepository{
 
@@ -30,7 +37,7 @@ public class OrderRepositoryImpl implements OrderRepository{
     // 指定されたTrackingIdでOrderを検索する
     @Override
     public Optional<Order> findByTrackingId(TrackingId trackingId) {
-        return orderJpaRepository.finadByTrackingId(trackingId.getValue())
+        return orderJpaRepository.findByTrackingId(trackingId.getValue())
             // finadByTrackingIdの戻り値はOptional<OrderEntity>
             // Optionalのmapメソッドは、Optionalの変数がNullでない場合にmapの中を実行する。
             // map()内は、メソッド参照。 orderEntity -> orderDataAccessMapper.orderENtityToOrder(orderENtity)と同義

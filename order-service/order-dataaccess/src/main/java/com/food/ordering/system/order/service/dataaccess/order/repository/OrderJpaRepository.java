@@ -11,6 +11,6 @@ import com.food.ordering.system.order.service.dataaccess.order.entity.OrderEntit
 @Repository
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, UUID>{
 
-    Optional<OrderEntity> finadByTrackingId(UUID trackingId);
+    Optional<OrderEntity> findByTrackingId(UUID trackingId);
 
 }

@@ -12,6 +12,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*
+ * Udemy-36
+ */
+
 @Getter
 @Setter
 @Builder
@@ -21,6 +25,7 @@ import lombok.Setter;
 @Entity
 public class CustomerEntity {
 
+    // Customerの存在チェックのみ実装するので、IDのみでよい
     @Id
     private UUID id;
 }

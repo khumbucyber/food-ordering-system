@@ -2,7 +2,8 @@ DROP SCHEMA IF EXISTS "order" CASCADE;
 
 CREATE SCHEMA "order";
 
-CREATE EXTENTION IF NOT EXISTS "uuid-pssp";
+-- CREATE EXTENTION IF NOT EXISTS "uuid-pssp";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 DROP TYPE IF EXISTS order_status;
 CREATE TYPE order_status AS ENUM ('PENDING','PAID','APPROVED','CANCELLED','CANCELLING');
@@ -27,10 +28,10 @@ CREATE TABLE "order".order_items
 (
     id bigint NOT NULL,
     order_id uuid NOT NULL,
-    product_id NOT NULL,
+    product_id uuid NOT NULL,
     price numeric(10,2) NOT NULL,
     quantity integer NOT NULL,
-    sub_total numerit(10,2) NOT NULL,
+    sub_total numeric(10,2) NOT NULL,
     CONSTRAINT order_items_pkey PRIMARY KEY (id)
 );
 

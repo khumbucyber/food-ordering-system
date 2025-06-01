@@ -42,10 +42,11 @@ public class OrderEntity {
 
     // orderエンティティと1:1でマッピング
     // CascadeがALLなので、OrderAddressEntityを削除するとOrderEntityも消える
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    // "orderEntity"はOrderAddressEntityのフィールド名と合せる必要がある。
+    @OneToOne(mappedBy = "orderEntity", cascade = CascadeType.ALL)
     private OrderAddressEntity address;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL)
     private List<OrderItemEntity> items;
 
     @Override

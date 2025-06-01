@@ -7,7 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -23,14 +23,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor // Bulderパターンを使用するのに必要
 @IdClass(OrderItemEntityId.class)
-@Table(name = "order_entity")
+@Table(name = "order_items")
 @Entity
 public class OrderItemEntity {
 
+    // 複数のキーを持つエンティティ
+    // OrderItemEntityのID
     @Id
     private Long id;
+
     @Id
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
     private OrderEntity orderEntity;
 
