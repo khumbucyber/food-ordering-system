@@ -32,7 +32,7 @@ public class OrderAddressEntity {
     private OrderEntity orderEntity;    // なぜOrderEntityの参照を持つのか？相互参照になりそうだけど。
     
     private String street;
-    private String postCode;
+    private String postalCode;
     private String city;
 
     @Override
