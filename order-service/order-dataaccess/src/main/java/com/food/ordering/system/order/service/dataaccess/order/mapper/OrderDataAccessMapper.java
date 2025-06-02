@@ -37,7 +37,7 @@ public class OrderDataAccessMapper {
             .price(order.getPrice().getAmount())
             .items(orderItemsToOrderItemEntities(order.getItems()))
             .orderStatus(order.getOrderStatus())
-            .failureMessages(order.getFailureMessages() != null ? 
+            .failureMessage(order.getFailureMessages() != null ? 
                 String.join(Order.FAILURE_MESSAGE_DELIMITER, order.getFailureMessages()) : "")
             .build();
             // 作成したOrderEntityオブジェクトを、そのOrderEntityのAddressのOrderEntityにセットする。
@@ -61,8 +61,8 @@ public class OrderDataAccessMapper {
             .setTrackingId(new TrackingId(orderEntity.getTrackingId()))
             .setOrderStatus(orderEntity.getOrderStatus())
             // カンマ区切りでつながったStringをListに変換する。
-            .setFailureMessages(orderEntity.getFailureMessages().isEmpty() ? new ArrayList<>() :
-                new ArrayList<>(Arrays.asList(orderEntity.getFailureMessages()
+            .setFailureMessages(orderEntity.getFailureMessage().isEmpty() ? new ArrayList<>() :
+                new ArrayList<>(Arrays.asList(orderEntity.getFailureMessage()
                     .split(Order.FAILURE_MESSAGE_DELIMITER))))
             .build();
         }
@@ -72,7 +72,7 @@ public class OrderDataAccessMapper {
         return OrderAddressEntity.builder()
             .id(deliveryAddress.getId())
             .street(deliveryAddress.getStreet())
-            .postCode(deliveryAddress.getPostalCode())
+            .postalCode(deliveryAddress.getPostalCode())
             .city(deliveryAddress.getCity())
             .build();
     }
@@ -81,7 +81,7 @@ public class OrderDataAccessMapper {
     private StreetAddress AddressEntityToDeliveryAddress(OrderAddressEntity orderAddressEntity) {
         return new StreetAddress(
                 orderAddressEntity.getId(), orderAddressEntity.getStreet(),
-                orderAddressEntity.getPostCode(), orderAddressEntity.getCity());
+                orderAddressEntity.getPostalCode(), orderAddressEntity.getCity());
     }
 
     // OrderItemのListオブジェクトを、DB登録用にOrderItemEntityのListオブジェクトに詰め替える

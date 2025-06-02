@@ -38,7 +38,7 @@ public class OrderEntity {
     private BigDecimal price;
     @Enumerated(EnumType.STRING)    // https://chatgpt.com/share/67d58e3e-9100-800e-aa96-4162d49a9aa3
     private OrderStatus orderStatus;
-    private String failureMessages;
+    private String failureMessage;
 
     // orderエンティティと1:1でマッピング
     // CascadeがALLなので、OrderAddressEntityを削除するとOrderEntityも消える
