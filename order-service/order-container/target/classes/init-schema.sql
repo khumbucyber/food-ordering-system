@@ -32,7 +32,9 @@ CREATE TABLE "order".order_items
     price numeric(10,2) NOT NULL,
     quantity integer NOT NULL,
     sub_total numeric(10,2) NOT NULL,
-    CONSTRAINT order_items_pkey PRIMARY KEY (id)
+    -- pkがidのみだと、order_idが重複する可能性があるので、order_idもpkにする必要がある。
+    -- oder-domain-core(initializeOrderItem()内)で、order_itemsのidは都度1から採番している。
+    CONSTRAINT order_items_pkey PRIMARY KEY (id, order_id)
 );
 
 ALTER TABLE "order".order_items
