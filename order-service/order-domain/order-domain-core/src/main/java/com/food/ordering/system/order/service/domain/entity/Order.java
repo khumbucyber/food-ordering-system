@@ -158,10 +158,14 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
     // builderオブジェクトを生成するためのメソッドは一旦作成しないでおく。
-    // なくても new OrderItem.Builder() でデフォルトコンストラクタを呼びオブジェクト生成はできる
+    // なくても new Order.Builder() でデフォルトコンストラクタを呼びオブジェクト生成はできる
     // ↓やっぱり書いた
     // 内部クラスをnewするメソッド
     // これを最初書かなかった。これ要るの？
+    // まあこれがあった方が、使い側は簡潔に書けるので便利だ。
+    // staticな内部クラスなので、外部クラスのインスタンスを生成しなくても
+    // 内部クラスのインスタンスを生成できる。
+    // https://chatgpt.com/share/66e96836-6ce4-800e-b011-d42555f3ca7a
     public static Builder builder() {
         return new Builder();
     }
