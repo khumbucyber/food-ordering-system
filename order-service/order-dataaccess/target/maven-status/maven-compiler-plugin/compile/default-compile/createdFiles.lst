@@ -16,6 +16,7 @@ com/food/ordering/system/order/service/dataaccess/order/entity/OrderEntity.class
 com/food/ordering/system/order/service/dataaccess/restaurant/entity/RestaurantEntityId.class
 com/food/ordering/system/order/service/dataaccess/restaurant/mapper/RestaurantDataAccessMapper.class
 com/food/ordering/system/order/service/dataaccess/restaurant/entity/RestaurantEntity.class
+com/food/ordering/system/order/service/dataaccess/restaurant/adapter/RestaurantRepositoryImpl.class
 com/food/ordering/system/order/service/dataaccess/order/entity/OrderAddressEntity$OrderAddressEntityBuilder.class
 com/food/ordering/system/order/service/dataaccess/order/entity/OrderItemEntity$OrderItemEntityBuilder.class
 com/food/ordering/system/order/service/dataaccess/restaurant/repository/RestaurantJpaRepository.class

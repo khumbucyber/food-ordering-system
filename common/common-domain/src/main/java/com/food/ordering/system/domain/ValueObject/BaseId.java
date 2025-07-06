@@ -27,7 +27,7 @@ public abstract class BaseId<T> {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BaseId other = (BaseId) obj;
+        BaseId<?> other = (BaseId<?>) obj;
         if (value == null) {
             if (other.value != null)
                 return false;
