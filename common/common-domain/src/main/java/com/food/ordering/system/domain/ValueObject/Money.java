@@ -31,7 +31,7 @@ public class Money {
     }
 
     // パラメータで受け取った額を減算して、新しいmoneyオブジェクトを返す
-    public Money substract(Money money) {
+    public Money subtract(Money money) {
         return new Money(setScale(this.amount.subtract(money.getAmount())));
     }
 

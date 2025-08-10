@@ -21,11 +21,11 @@
         <module>common</module>
         <module>infrastructure</module>
         <module>customer-service</module>
-        <!-- <module>payment-service</module> -->
+        <module>payment-service</module>
     </modules>
 
     <properties>
-        <maven-conpiler-plugin.version>3.9.0</maven-conpiler-plugin.version>
+        <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <mockito.version>4.3.1</mockito.version>
         <spring-kafka.version>2.8.2</spring-kafka.version>
         <kafka-avro-serializer.version>7.0.1</kafka-avro-serializer.version>
