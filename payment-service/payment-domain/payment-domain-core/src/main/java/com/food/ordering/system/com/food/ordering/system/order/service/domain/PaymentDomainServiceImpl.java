@@ -9,7 +9,7 @@ import com.food.ordering.system.com.food.ordering.system.order.service.domain.en
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.entity.CreditHistory;
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.entity.Payment;
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.event.PaymentCancelledEvent;
-import com.food.ordering.system.com.food.ordering.system.order.service.domain.event.PaymentCompletEvent;
+import com.food.ordering.system.com.food.ordering.system.order.service.domain.event.PaymentCompletedEvent;
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.event.PaymentEvent;
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.event.PaymentFailedEvent;
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.valueobject.CreditHistoryId;
@@ -39,7 +39,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService{
             log.info("Payment for order: {} is successfully initiated with price: {}",
                     payment.getOrderId().getValue(), payment.getPrice().getAmount());
             payment.updateStatus(PaymentStatus.COMPLETED);
-            return new PaymentCompletEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
+            return new PaymentCompletedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
         } else {
             log.error("Payment for order: {} failed", 
                     payment.getOrderId().getValue());

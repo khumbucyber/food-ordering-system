@@ -2,13 +2,12 @@ package com.food.ordering.system.com.food.ordering.system.order.service.domain.e
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
-import java.util.List;
 
 import com.food.ordering.system.com.food.ordering.system.order.service.domain.entity.Payment;
 
-public class PaymentCompletEvent extends PaymentEvent{
+public class PaymentCompletedEvent extends PaymentEvent{
 
-    public PaymentCompletEvent(Payment payment, ZonedDateTime createdAt) {
+    public PaymentCompletedEvent(Payment payment, ZonedDateTime createdAt) {
         super(payment, createdAt, Collections.emptyList());
     }
 
