@@ -1,38 +1,28 @@
 package com.food.ordering.system.order.service.messaging.publisher.kafka;
 
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import lombok.extern.slf4j.Slf4j;
+import com.food.ordering.system.kafka.producer.helper.KafkaMessageHelper;
 
-@Slf4j
+/**
+ * OrderKafkaMessageHelper
+ * 共通のKafkaMessageHelperへの委譲クラス
+ * @deprecated 共通モジュールのKafkaMessageHelperを直接使用してください
+ */
 @Component
+@Deprecated
 public class OrderKafkaMessageHelper {
+
+    private final KafkaMessageHelper kafkaMessageHelper;
+
+    public OrderKafkaMessageHelper(KafkaMessageHelper kafkaMessageHelper) {
+        this.kafkaMessageHelper = kafkaMessageHelper;
+    }
 
     public <T> ListenableFutureCallback<SendResult<String, T>> getKafkaCallback(
             String responseTopicName, T requestAvroModel, String orderId, String requestAvroModelName) {
-        return new ListenableFutureCallback<SendResult<String,T>>() {
-
-            @Override
-            public void onFailure(Throwable ex) {
-                log.error("Error while sending" + requestAvroModelName +
-                    " message {} to topic {}", requestAvroModel.toString(), responseTopicName, ex);
-            }
-
-            @Override
-            public void onSuccess(SendResult<String, T> result) {
-                RecordMetadata metadata = result.getRecordMetadata();
-                log.info("Received successful response from kafka for order id: {}" +
-                    " topic: {} Partition: {} Offset: {} Timestamp: {}",
-                    orderId,
-                    metadata.topic(),
-                    metadata.partition(),
-                    metadata.offset(),
-                    metadata.timestamp()
-                );
-            }
-        };
+        return kafkaMessageHelper.getKafkaCallback(responseTopicName, requestAvroModel, orderId, requestAvroModelName);
     }
 }

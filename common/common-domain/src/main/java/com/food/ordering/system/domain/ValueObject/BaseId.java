@@ -1,4 +1,4 @@
-package com.food.ordering.system.domain.ValueObject;
+package com.food.ordering.system.domain.valueobject;
 
 public abstract class BaseId<T> {
     private final T value;
