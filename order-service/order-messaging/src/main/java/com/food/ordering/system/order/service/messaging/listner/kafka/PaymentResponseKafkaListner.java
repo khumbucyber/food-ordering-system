@@ -16,6 +16,11 @@ import com.food.ordering.system.order.service.messaging.mapper.OrderMessagingDat
 
 import lombok.extern.slf4j.Slf4j;
 
+/*
+ * Kafkaのメッセージリスナーとして機能し、支払いサービスからの支払い応答メッセージをリッスンするクラス
+ * 支払いが完了した場合とキャンセルまたは失敗した場合の両方に対応する。
+ * 支払い応答メッセージを受信すると、対応するメソッドを呼び出して、支払い完了またはキャンセルの処理を行う。
+ */
 @Slf4j
 @Component
 public class PaymentResponseKafkaListner implements KafkaConsumer<PaymentResponseAvroModel> {

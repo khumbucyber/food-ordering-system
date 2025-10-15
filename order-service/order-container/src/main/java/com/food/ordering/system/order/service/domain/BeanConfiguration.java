@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 // Spting管理のConfigrationBeanとする。
 @Configuration
-public class BeanConfigration {
+public class BeanConfiguration {
 
     // order-domain-coreのOrderDomainServiceはSpringの依存関係を追加してない。
     // がSpringBeanとして依存性注入したいので、ここでSpring管理にするためのメソッド

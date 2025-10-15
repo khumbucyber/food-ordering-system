@@ -9,6 +9,7 @@ import lombok.Data;
 @Configuration
 @ConfigurationProperties(prefix = "payment-service")
 public class PaymentServiceConfigData {
+    // 各トピック名はプロパティに記載される（configration.yaml）
     private String paymentRequestTopicName;
     private String paymentResponseTopicName;
 }

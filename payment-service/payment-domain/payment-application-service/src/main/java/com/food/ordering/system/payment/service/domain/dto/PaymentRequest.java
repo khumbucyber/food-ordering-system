@@ -3,7 +3,7 @@ package com.food.ordering.system.payment.service.domain.dto;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-import com.food.ordering.system.domain.ValueObject.PaymentOrderStatus;
+import com.food.ordering.system.domain.valueobject.PaymentOrderStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

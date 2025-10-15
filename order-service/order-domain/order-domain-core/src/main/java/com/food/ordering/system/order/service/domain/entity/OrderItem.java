@@ -1,8 +1,8 @@
 package com.food.ordering.system.order.service.domain.entity;
 
-import com.food.ordering.system.domain.ValueObject.Money;
-import com.food.ordering.system.domain.ValueObject.OrderId;
 import com.food.ordering.system.domain.entity.BaseEntity;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
 
 import lombok.extern.slf4j.Slf4j;

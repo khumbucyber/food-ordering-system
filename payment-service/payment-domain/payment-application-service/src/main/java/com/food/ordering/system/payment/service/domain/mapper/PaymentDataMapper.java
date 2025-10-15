@@ -4,11 +4,11 @@ import java.util.UUID;
 
 import org.springframework.core.annotation.Order;
 
-import com.food.ordering.system.com.food.ordering.system.order.service.domain.entity.Payment;
-import com.food.ordering.system.domain.ValueObject.CustomerId;
-import com.food.ordering.system.domain.ValueObject.Money;
-import com.food.ordering.system.domain.ValueObject.OrderId;
+import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.payment.service.domain.dto.PaymentRequest;
+import com.food.ordering.system.payment.service.domain.entity.Payment;
 
 /*
  * 入力オブジェクトからドメインオブジェクトへの変換や

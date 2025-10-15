@@ -3,7 +3,7 @@ package com.food.ordering.system.order.service.domain.dto.message;
 import java.time.Instant;
 import java.util.List;
 
-import com.food.ordering.system.domain.ValueObject.OrderApprovalStatus;
+import com.food.ordering.system.domain.valueobject.OrderApprovalStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
