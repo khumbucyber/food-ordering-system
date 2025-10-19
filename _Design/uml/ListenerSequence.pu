@@ -1,0 +1,11 @@
+@startuml ListenerSequence
+hide empty members
+
+OrderCreateCommandHandler -> PaymentResponseKafkaListener : publish
+PaymentResponseKafkaListener --> PaymentResponseKafkaListener : implements
+CreateOrderKafkaMessagePublisher -> OrderMessagingDataMapper : orderCreatedEventToPaymentRequestAvroModel
+CreateOrderKafkaMessagePublisher -> KafkaProducer : send
+
+PaymentResponseKafkaListener implements KafkaConsumer<PaymentResponseAvroModel>
+
+@enduml

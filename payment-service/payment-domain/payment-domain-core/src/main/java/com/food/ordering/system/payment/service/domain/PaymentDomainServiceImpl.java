@@ -36,7 +36,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService{
         validateCreditEntry(payment, creditEntry, failureMessages);
         subtractCreditEntry(payment, creditEntry);
         updateCreditHisory(payment, creditHistories, TransactionType.DEBIT);
-        validateCreditHitory(creditEntry, creditHistories, failureMessages);
+        validateCreditHistory(creditEntry, creditHistories, failureMessages);
 
         if (failureMessages.isEmpty()) {
             log.info("Payment for order: {} is successfully initiated with price: {}",
@@ -77,7 +77,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService{
 
     private void validateCreditEntry(Payment payment, CreditEntry creditEntry, List<String> failureMessages) {
         if (payment.getPrice().isGreaterThan(creditEntry.getTotalCreditAmount())) {
-            log.error("Cutomer with id: {} doesnt't have enough credit for payment for order: {}",
+            log.error("Customer with id: {} doesn't have enough credit for payment for order: {}",
                     payment.getCustomerId().getValue(), payment.getOrderId().getValue());
             failureMessages.add("Customer with id: " + payment.getCustomerId().getValue() +
                     " doesn't have enough credit for payment for order: " + payment.getOrderId().getValue());
@@ -97,7 +97,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService{
                 .build());
     }
 
-    private void validateCreditHitory(CreditEntry creditEntry, List<CreditHistory> creditHistories,
+    private void validateCreditHistory(CreditEntry creditEntry, List<CreditHistory> creditHistories,
             List<String> failureMessages) {
         Money totalCreditHistoryAmount = getTotalHistoryAmount(creditHistories, TransactionType.CREDIT);
         Money totalDebitHistoryAmount = getTotalHistoryAmount(creditHistories, TransactionType.DEBIT);

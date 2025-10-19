@@ -49,10 +49,10 @@ public class KafkaConsumerConfig<K extends Serializable, V extends SpecificRecor
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
         
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<K, V>> kafkaListnerContainerFactory() {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<K, V>> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<K, V> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.setBatchListener(kafkaConsumerConfigData.getBatchListner());
+        factory.setBatchListener(kafkaConsumerConfigData.getBatchListener());
         factory.setConcurrency(kafkaConsumerConfigData.getConcurrencyLevel());
         factory.setAutoStartup(kafkaConsumerConfigData.getAutoStartup());
         factory.getContainerProperties().setPollTimeout(kafkaConsumerConfigData.getPollTimeoutMs());

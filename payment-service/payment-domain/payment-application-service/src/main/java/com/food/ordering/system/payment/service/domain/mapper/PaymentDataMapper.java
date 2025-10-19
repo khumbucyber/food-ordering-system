@@ -2,8 +2,6 @@ package com.food.ordering.system.payment.service.domain.mapper;
 
 import java.util.UUID;
 
-import org.springframework.core.annotation.Order;
-
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.food.ordering.system.kafka.consumer.KafkaConsumer;
 import com.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
 import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
-import com.food.ordering.system.payment.service.domain.ports.input.message.listner.PaymentRequestMessageListner;
+import com.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import com.food.ordering.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +25,12 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class PaymentRequestKafkaListener implements KafkaConsumer<PaymentRequestAvroModel> {
 
-    private final PaymentRequestMessageListner paymentRequestMessageListner;
+    private final PaymentRequestMessageListener paymentRequestMessageListener;
     private final PaymentMessagingDataMapper paymentMessagingDataMapper;
 
-    public PaymentRequestKafkaListener(PaymentRequestMessageListner paymentRequestMessageListner,
+    public PaymentRequestKafkaListener(PaymentRequestMessageListener paymentRequestMessageListener,
             PaymentMessagingDataMapper paymentMessagingDataMapper) {
-        this.paymentRequestMessageListner = paymentRequestMessageListner;
+        this.paymentRequestMessageListener = paymentRequestMessageListener;
         this.paymentMessagingDataMapper = paymentMessagingDataMapper;
     }
 
@@ -50,11 +50,11 @@ public class PaymentRequestKafkaListener implements KafkaConsumer<PaymentRequest
         messages.forEach(paymentRequestAvroModel -> {
             if (PaymentOrderStatus.PENDING == paymentRequestAvroModel.getPaymentOrderStatus()) {
                 log.info("Processing payment for order id: {}", paymentRequestAvroModel.getOrderId());
-                paymentRequestMessageListner.completePayment(
+                paymentRequestMessageListener.completePayment(
                     paymentMessagingDataMapper.paymentRequestAvroModelToPaymentRequest(paymentRequestAvroModel));
             } else if (PaymentOrderStatus.CANCELLED == paymentRequestAvroModel.getPaymentOrderStatus()) {
                 log.info("Cancelling payment for order id: {}", paymentRequestAvroModel.getOrderId());
-                paymentRequestMessageListner.cancelPayment(
+                paymentRequestMessageListener.cancelPayment(
                     paymentMessagingDataMapper.paymentRequestAvroModelToPaymentRequest(paymentRequestAvroModel));
             }
         });
