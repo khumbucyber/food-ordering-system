@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.food.ordering.system.domain.ValueObject.OrderApprovalStatus;
-import com.food.ordering.system.domain.ValueObject.PaymentStatus;
+import com.food.ordering.system.domain.valueobject.OrderApprovalStatus;
+import com.food.ordering.system.domain.valueobject.PaymentStatus;
 import com.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
 import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;

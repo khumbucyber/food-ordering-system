@@ -4,18 +4,27 @@
 Udemy-44.Domain core module:Aggregate root, entity, value object より  
 
 ## moduleの構成
+FOOD-ORDERING-SYSTEM プロジェクトの配下で  
 以下の module を maven module として作成する。  
-* payment-service
+* checking-service
+  * checking-container
+  * checking-dataaccess
+  * checking-domain
+    * checking-domain-core
+    * checking-application-service
+  * checking-messaging
+
+<!-- * payment-service
   * payment-container
   * payment-dataaccess
   * payment-domain
     * payment-domain-core
-    * payment-application-service
-  * payment-messaging
+    * payment-applcation-service
+  * payment-messaging -->
 
 ## packageの構成
-### order-domain-core module
-* com.food.ordering.system.order.service.domain
+### checking-domain-core module
+* com.food.ordering.system.checking.service.domain
   * entity
   * valueObject
   * event
@@ -23,6 +32,8 @@ Udemy-44.Domain core module:Aggregate root, entity, value object より
 
 ## entity の設計
 ### Payment エンティティ
+* 継承
+  * AggregateRoot<PaymentId>
 * フィールド
   * PaymentId paymentId  # AggregateRoot, BaseEntityから継承
   * OrderId orderId  # 支払い対象のOrderを示す

@@ -3,6 +3,12 @@ package com.food.ordering.system.domain.entity;
 public abstract class BaseEntity<ID> {
     private ID id;
 
+    /*
+     * This method is used to set the ID of the entity.
+     * ※constructorにしない理由は、IDがnullであることを許容するため。
+     * 　Orderの新規作成時にはIDが以外のフィールドを入力値で設定し、
+     * 　後からIDを採番することがあるから？
+     */
     public void setId(ID id) {
         this.id = id;
     }

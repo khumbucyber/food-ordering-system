@@ -4,8 +4,8 @@ package com.food.ordering.system.order.service.domain.entity;
 
 import java.util.List;
 
-import com.food.ordering.system.domain.ValueObject.RestaurantId;
 import com.food.ordering.system.domain.entity.AggregateRoot;
+import com.food.ordering.system.domain.valueobject.RestaurantId;
 
 // 外部クラス
 public class Restaurant extends AggregateRoot<RestaurantId> {

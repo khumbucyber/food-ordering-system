@@ -24,7 +24,7 @@ public class KafkaConsumerConfigData {
     @NotNull
     private String specificAvroReader;
     @NotNull
-    private Boolean batchListner;
+    private Boolean batchListener;
     @NotNull
     private Boolean autoStartup;
     @NotNull

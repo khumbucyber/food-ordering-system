@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.food.ordering.system.domain.ValueObject.OrderStatus;
+import com.food.ordering.system.domain.valueobject.OrderStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

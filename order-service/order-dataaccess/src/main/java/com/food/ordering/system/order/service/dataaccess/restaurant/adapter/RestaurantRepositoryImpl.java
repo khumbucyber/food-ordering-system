@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.food.ordering.system.order.service.dataaccess.restaurant.entity.RestaurantEntity;
 import com.food.ordering.system.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
 import com.food.ordering.system.order.service.dataaccess.restaurant.repository.RestaurantJpaRepository;
-import com.food.ordering.system.order.service.domain.entity.Customer;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
 

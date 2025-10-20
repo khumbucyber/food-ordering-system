@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.food.ordering.system.domain.ValueObject.CustomerId;
-import com.food.ordering.system.domain.ValueObject.Money;
-import com.food.ordering.system.domain.ValueObject.OrderId;
-import com.food.ordering.system.domain.ValueObject.ProductId;
-import com.food.ordering.system.domain.ValueObject.RestaurantId;
+import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.OrderId;
+import com.food.ordering.system.domain.valueobject.ProductId;
+import com.food.ordering.system.domain.valueobject.RestaurantId;
 import com.food.ordering.system.order.service.dataaccess.order.entity.OrderAddressEntity;
 import com.food.ordering.system.order.service.dataaccess.order.entity.OrderEntity;
 import com.food.ordering.system.order.service.dataaccess.order.entity.OrderItemEntity;

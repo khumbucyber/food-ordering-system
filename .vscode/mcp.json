@@ -1,0 +1,13 @@
+{
+	"servers": {
+		"github": {
+			"url": "https://api.githubcopilot.com/mcp",
+			"type": "http"
+		},
+		"todo-mcp": {
+			"url": "http://localhost:3300",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}

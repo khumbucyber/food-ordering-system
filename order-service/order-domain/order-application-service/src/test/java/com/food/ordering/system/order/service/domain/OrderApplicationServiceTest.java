@@ -18,12 +18,12 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.food.ordering.system.domain.ValueObject.CustomerId;
-import com.food.ordering.system.domain.ValueObject.Money;
-import com.food.ordering.system.domain.ValueObject.OrderId;
-import com.food.ordering.system.domain.ValueObject.OrderStatus;
-import com.food.ordering.system.domain.ValueObject.ProductId;
-import com.food.ordering.system.domain.ValueObject.RestaurantId;
+import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.OrderId;
+import com.food.ordering.system.domain.valueobject.OrderStatus;
+import com.food.ordering.system.domain.valueobject.ProductId;
+import com.food.ordering.system.domain.valueobject.RestaurantId;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.order.service.domain.dto.create.OrderAddressDto;

@@ -4,6 +4,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+import com.food.ordering.system.domain.DomainConstants;
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
@@ -21,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
 
-    private static final String UTC = "UTC";
+    // DomainConstants.java に移したので削除
+    // private static final String UTC = "UTC";
 
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
@@ -30,14 +32,14 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         order.validateOrder();
         order.initializeOrder();
         log.info("Order with id: {} is initiated", order.getId().getValue());
-        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     }
 
     @Override
     public OrderPaidEvent payOrder(Order order) {
         order.pay();    // 実装していないメソッドが登場した…
         log.info("Order with id: {} is paid", order.getId().getValue());
-        return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     }
 
     @Override
@@ -50,7 +52,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessage) {
         order.initCancel(failureMessage);
         log.info("Order payment is cancelling for order id: {}", order.getId().getValue());
-        return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     }
 
     @Override
