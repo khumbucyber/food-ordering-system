@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/order-service"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/payment-service"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/restaurant-service"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/customer-service"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/common"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/infrastructure"
+    schedule:
+      interval: "weekly"
