@@ -14,6 +14,12 @@
 5. 配達員がモバイルアプリから配達完了または配達失敗を報告
 6. Order Service に配達結果を通知
 
+### 1.3 設計思想
+* **イミュータブルデータモデル**: deliveriesテーブルは作成後変更しない
+* **イベントソーシング的アプローチ**: 状態遷移をdelivery_historyテーブルに追記のみで記録
+* **トレーサビリティ重視**: いつ・誰が・何をしたかを完全に追跡可能
+* **派生属性の非永続化**: 現在のステータスや配達件数は履歴から算出
+
 ## 2. モジュールの構成
 
 ```
@@ -55,40 +61,60 @@ com.food.ordering.system.delivery.service.domain
   * `DeliveryId id` - 配達ID（AggregateRootから継承）
   * `OrderId orderId` - 対象の注文ID
   * `RestaurantId restaurantId` - レストランID（ピックアップ場所）
-  * `DeliveryDriverId deliveryDriverId` - 割り当てられた配達員ID
+  * `DeliveryDriverId assignedDriverId` - 割り当てられた配達員ID（イミュータブル）
   * `DeliveryAddress pickupAddress` - ピックアップ先住所
   * `DeliveryAddress deliveryAddress` - 配達先住所
-  * `DeliveryStatus deliveryStatus` - 配達ステータス
-  * `ZonedDateTime requestedAt` - 配達リクエスト時刻
-  * `ZonedDateTime assignedAt` - 配達員割り当て時刻
-  * `ZonedDateTime pickedUpAt` - ピックアップ時刻
-  * `ZonedDateTime deliveredAt` - 配達完了時刻
-  * `String failureMessage` - 配達失敗時のメッセージ
+  * `ZonedDateTime createdAt` - 配達作成時刻
+  * `List<DeliveryHistory> history` - 配達履歴（子エンティティ）
   * `List<String> failureMessages` - 検証エラーメッセージのリスト
 
+* **派生属性（永続化しない）**:
+  * `DeliveryStatus getCurrentStatus()` - 現在のステータス（履歴の最新レコードから取得）
+  * `ZonedDateTime getAssignedAt()` - 配達員割り当て時刻（履歴から取得）
+  * `ZonedDateTime getPickedUpAt()` - ピックアップ時刻（履歴から取得）
+  * `ZonedDateTime getDeliveredAt()` - 配達完了時刻（履歴から取得）
+
 * **メソッド**:
-  * `void initializeDelivery()` - 配達の初期化（ステータス: PENDING）
-  * `void assignDriver(DeliveryDriverId driverId, ZonedDateTime assignedAt)` - 配達員の割り当て
-  * `void pickUp(ZonedDateTime pickedUpAt)` - ピックアップ処理
-  * `void complete(ZonedDateTime deliveredAt)` - 配達完了
-  * `void cancel(String reason)` - 配達キャンセル
+  * `void initializeDelivery()` - 配達の初期化（PENDING履歴を追加）
+  * `void assignDriver(DeliveryDriverId driverId, ZonedDateTime assignedAt)` - 配達員の割り当て（ASSIGNED履歴を追加）
+  * `void pickUp(DeliveryDriverId driverId, ZonedDateTime pickedUpAt)` - ピックアップ処理（PICKED_UP履歴を追加）
+  * `void complete(DeliveryDriverId driverId, ZonedDateTime deliveredAt)` - 配達完了（DELIVERED履歴を追加）
+  * `void cancel(DeliveryDriverId driverId, String reason, ZonedDateTime cancelledAt)` - 配達キャンセル（CANCELLED履歴を追加）
   * `void validateDelivery()` - 配達の検証
+  * `void validateStatusTransition(DeliveryStatus newStatus)` - ステータス遷移の検証
 
 * **インスタンス生成**: Builderパターン
 
-### 4.2 DeliveryDriver エンティティ
+### 4.2 DeliveryHistory エンティティ
+* **継承**: `BaseEntity<DeliveryHistoryId>`
+* **フィールド**:
+  * `DeliveryHistoryId id` - 履歴ID
+  * `HistoryType historyType` - 履歴タイプ（ASSIGNED, PICKED_UP, DELIVERED, CANCELLED）
+  * `ZonedDateTime occurredAt` - 発生時刻
+  * `DeliveryDriverId recordedByDriverId` - 記録した配達員ID（nullの場合はSYSTEM）
+  * `String notes` - 備考（キャンセル理由等）
+
+* **メソッド**:
+  * `boolean isRecordedBySystem()` - システムによる記録か判定
+  * `boolean isRecordedByDriver()` - 配達員による記録か判定
+
+* **インスタンス生成**: Builderパターン
+
+### 4.3 DeliveryDriver エンティティ
 * **継承**: `BaseEntity<DeliveryDriverId>`
 * **フィールド**:
   * `DeliveryDriverId id` - 配達員ID
   * `String name` - 配達員名
   * `String phoneNumber` - 電話番号
   * `DriverStatus status` - 配達員ステータス（AVAILABLE, BUSY, OFFLINE）
-  * `int activeDeliveryCount` - 現在の配達件数
+
+* **派生属性（永続化しない）**:
+  * `int getActiveDeliveryCount()` - 現在の配達件数（リポジトリ経由でカウント）
 
 * **メソッド**:
   * `boolean isAvailable()` - 割り当て可能かチェック
-  * `void assignDelivery()` - 配達割り当て（ステータス: BUSY、activeDeliveryCount++）
-  * `void completeDelivery()` - 配達完了処理（activeDeliveryCount--、count==0ならAVAILABLE）
+  * `void markAsBusy()` - ステータスをBUSYに変更
+  * `void markAsAvailable()` - ステータスをAVAILABLEに変更
   * `void validateDriver()` - 配達員の検証
 
 * **インスタンス生成**: Builderパターン
@@ -99,23 +125,36 @@ com.food.ordering.system.delivery.service.domain
 * `BaseId<UUID>` を継承
 * 型: `UUID`
 
-### 5.2 DeliveryDriverId
+### 5.2 DeliveryHistoryId
 * `BaseId<UUID>` を継承
 * 型: `UUID`
 
-### 5.3 DeliveryStatus（列挙型）
+### 5.3 DeliveryDriverId
+* `BaseId<UUID>` を継承
+* 型: `UUID`
+
+### 5.4 DeliveryStatus（列挙型）
 ```java
 public enum DeliveryStatus {
     PENDING,        // 配達員割り当て待ち
     ASSIGNED,       // 配達員割り当て済み
     PICKED_UP,      // ピックアップ完了
-    IN_TRANSIT,     // 配達中
     DELIVERED,      // 配達完了
     CANCELLED       // キャンセル
 }
 ```
 
-### 5.4 DriverStatus（列挙型）
+### 5.5 HistoryType（列挙型）
+```java
+public enum HistoryType {
+    ASSIGNED,       // 配達員割り当て済み
+    PICKED_UP,      // ピックアップ完了
+    DELIVERED,      // 配達完了
+    CANCELLED       // キャンセル
+}
+```
+
+### 5.6 DriverStatus（列挙型）
 ```java
 public enum DriverStatus {
     AVAILABLE,      // 配達可能
@@ -124,7 +163,7 @@ public enum DriverStatus {
 }
 ```
 
-### 5.5 DeliveryAddress
+### 5.7 DeliveryAddress
 * **フィールド**:
   * `UUID id` - アドレスID
   * `String street` - 番地
@@ -163,9 +202,9 @@ public enum DriverStatus {
 ```java
 public interface DeliveryDomainService {
     DeliveryAssignedEvent assignDelivery(Delivery delivery, List<DeliveryDriver> availableDrivers);
-    DeliveryPickedUpEvent pickUpDelivery(Delivery delivery);
-    DeliveryCompletedEvent completeDelivery(Delivery delivery);
-    DeliveryCancelledEvent cancelDelivery(Delivery delivery, String reason);
+    DeliveryPickedUpEvent pickUpDelivery(Delivery delivery, DeliveryDriverId driverId);
+    DeliveryCompletedEvent completeDelivery(Delivery delivery, DeliveryDriverId driverId);
+    DeliveryCancelledEvent cancelDelivery(Delivery delivery, DeliveryDriverId driverId, String reason);
 }
 ```
 
@@ -174,6 +213,7 @@ public interface DeliveryDomainService {
   * 配達員の割り当てアルゴリズム（現在の配達件数が最も少ない配達員を選択）
   * 配達ステータスの遷移検証
   * 配達時間の妥当性チェック
+  * 配達員の取り違い検知（assigned_driver_id ≠ recorded_by_driver_id）
 
 ## 8. ドメイン例外の設計
 
@@ -189,6 +229,9 @@ public interface DeliveryDomainService {
 ### 8.4 InvalidDeliveryStatusException
 * 無効なステータス遷移
 
+### 8.5 DriverMismatchException
+* 割り当てられた配達員と異なる配達員が操作した場合
+
 ## 9. アプリケーションサービスの設計
 
 ### 9.1 ポート（入力）
@@ -199,9 +242,9 @@ public interface DeliveryRequestHandler {
 
 public interface DeliveryCommandHandler {
     // 配達員用モバイルアプリから呼び出されるAPI
-    DeliveryResponse pickUpDelivery(UUID deliveryId);
-    DeliveryResponse completeDelivery(UUID deliveryId);
-    DeliveryResponse cancelDelivery(UUID deliveryId, String reason);
+    DeliveryResponse pickUpDelivery(UUID deliveryId, UUID driverId);
+    DeliveryResponse completeDelivery(UUID deliveryId, UUID driverId);
+    DeliveryResponse cancelDelivery(UUID deliveryId, UUID driverId, String reason);
 }
 
 public interface DeliveryTrackingHandler {
@@ -217,10 +260,16 @@ public interface DeliveryRepository {
     Optional<Delivery> findByOrderId(OrderId orderId);
 }
 
+public interface DeliveryHistoryRepository {
+    DeliveryHistory save(DeliveryHistory history);
+    List<DeliveryHistory> findByDeliveryId(DeliveryId deliveryId);
+}
+
 public interface DeliveryDriverRepository {
     List<DeliveryDriver> findAvailableDrivers();
     Optional<DeliveryDriver> findById(DeliveryDriverId driverId);
     DeliveryDriver save(DeliveryDriver driver);
+    int countActiveDeliveriesByDriverId(DeliveryDriverId driverId);
 }
 
 public interface DeliveryResponseMessagePublisher {
@@ -236,7 +285,6 @@ public class DeliveryRequest {
     private UUID restaurantId;
     private AddressDto pickupAddress;
     private AddressDto deliveryAddress;
-    private ZonedDateTime requestedAt;
 }
 
 public class DeliveryResponse {
@@ -291,29 +339,40 @@ public class DeliveryResponseKafkaPublisher {
 
 ### 11.2 テーブル設計
 
-#### deliveries テーブル
+#### deliveries テーブル（イミュータブル）
 ```sql
 CREATE TABLE delivery.deliveries (
     id UUID PRIMARY KEY,
     order_id UUID NOT NULL UNIQUE,
     restaurant_id UUID NOT NULL,
-    driver_id UUID,
+    assigned_driver_id UUID NOT NULL,
     pickup_address_id UUID NOT NULL,
     delivery_address_id UUID NOT NULL,
-    status VARCHAR(20) NOT NULL,
-    requested_at TIMESTAMP WITH TIME ZONE NOT NULL,
-    assigned_at TIMESTAMP WITH TIME ZONE,
-    picked_up_at TIMESTAMP WITH TIME ZONE,
-    delivered_at TIMESTAMP WITH TIME ZONE,
-    failure_message TEXT,
-    CONSTRAINT fk_driver FOREIGN KEY (driver_id) REFERENCES delivery.drivers(id),
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    CONSTRAINT fk_assigned_driver FOREIGN KEY (assigned_driver_id) REFERENCES delivery.drivers(id),
     CONSTRAINT fk_pickup_address FOREIGN KEY (pickup_address_id) REFERENCES delivery.addresses(id),
     CONSTRAINT fk_delivery_address FOREIGN KEY (delivery_address_id) REFERENCES delivery.addresses(id)
 );
 
 CREATE INDEX idx_deliveries_order_id ON delivery.deliveries(order_id);
-CREATE INDEX idx_deliveries_status ON delivery.deliveries(status);
-CREATE INDEX idx_deliveries_driver_id ON delivery.deliveries(driver_id);
+CREATE INDEX idx_deliveries_assigned_driver_id ON delivery.deliveries(assigned_driver_id);
+```
+
+#### delivery_history テーブル（追記のみ）
+```sql
+CREATE TABLE delivery.delivery_history (
+    id UUID PRIMARY KEY,
+    delivery_id UUID NOT NULL,
+    history_type VARCHAR(30) NOT NULL,  -- 'ASSIGNED', 'PICKED_UP', 'DELIVERED', 'CANCELLED'
+    occurred_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    recorded_by_driver_id UUID,  -- nullの場合はSYSTEM
+    notes TEXT,
+    CONSTRAINT fk_delivery FOREIGN KEY (delivery_id) REFERENCES delivery.deliveries(id),
+    CONSTRAINT fk_recorded_by_driver FOREIGN KEY (recorded_by_driver_id) REFERENCES delivery.drivers(id)
+);
+
+CREATE INDEX idx_delivery_history_delivery_id ON delivery.delivery_history(delivery_id);
+CREATE INDEX idx_delivery_history_occurred_at ON delivery.delivery_history(occurred_at);
 ```
 
 #### drivers テーブル
@@ -322,9 +381,7 @@ CREATE TABLE delivery.drivers (
     id UUID PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(20) NOT NULL,
-    status VARCHAR(20) NOT NULL,
-    active_delivery_count INT DEFAULT 0,
-    CONSTRAINT chk_active_delivery_count CHECK (active_delivery_count >= 0)
+    status VARCHAR(20) NOT NULL  -- 'AVAILABLE', 'BUSY', 'OFFLINE'
 );
 
 CREATE INDEX idx_drivers_status ON delivery.drivers(status);
@@ -344,16 +401,18 @@ CREATE TABLE delivery.addresses (
 
 ### 12.1 配達員割り当てロジック
 1. ステータスが `AVAILABLE` の配達員を取得
-2. 現在の配達件数（activeDeliveryCount）が最も少ない配達員を選択
-3. 配達員のステータスを `BUSY` に更新、activeDeliveryCount をインクリメント
-4. 配達のステータスを `ASSIGNED` に更新
+2. 各配達員の現在の配達件数を算出（リポジトリ経由でカウント）
+3. 配達件数が最も少ない配達員を選択
+4. 配達のdelivery_historyに ASSIGNED レコードを追加（recorded_by_driver_id = null）
+5. 配達員のステータスを `BUSY` に更新
 
 ### 12.2 ステータス遷移ルール
 ```
-PENDING → ASSIGNED → PICKED_UP → IN_TRANSIT → DELIVERED
-            ↓           ↓           ↓
-         CANCELLED   CANCELLED   CANCELLED
+PENDING → ASSIGNED → PICKED_UP → DELIVERED
+            ↓           ↓
+         CANCELLED   CANCELLED
 ```
+※ IN_TRANSITステータスは不要（PICKED_UP後は自動的に配達中とみなす）
 
 ### 12.3 配達キャンセル条件
 * レストランが注文をキャンセルした場合
@@ -366,6 +425,10 @@ PENDING → ASSIGNED → PICKED_UP → IN_TRANSIT → DELIVERED
 * 配達完了時刻 > ピックアップ時刻
 * 配達完了は、ピックアップから2時間以内を推奨
 
+### 12.5 配達員の取り違い検知
+* assigned_driver_id ≠ recorded_by_driver_id の場合、警告ログを出力
+* 異常なパターンとして監視対象とする
+
 ## 13. 統合フロー
 
 ### 13.1 正常フロー
@@ -374,20 +437,20 @@ PENDING → ASSIGNED → PICKED_UP → IN_TRANSIT → DELIVERED
    → Kafka: restaurant-approval-response
 
 2. Delivery Service: メッセージ受信
-   → 配達リクエスト作成（PENDING）
-   → 配達員を検索・割り当て（ASSIGNED）
+   → Deliveryを作成（assigned_driver_idを確定）
+   → delivery_historyに ASSIGNED レコード追加（recorded_by_driver_id = null）
    → DeliveryAssignedEvent 発行
 
 3. 配達員: 配達員用モバイルアプリでレストランに到着、ピックアップ完了
    → モバイルアプリ: POST /api/v1/deliveries/{deliveryId}/pickup
-   → Delivery Service: pickUp処理実行（PICKED_UP）
+   → Delivery Service: delivery_historyに PICKED_UP レコード追加（recorded_by_driver_id = 配達員ID）
    → DeliveryPickedUpEvent 発行
 
-4. 配達員: 配達先に向かう（IN_TRANSIT）
+4. 配達員: 配達先に向かう
 
 5. 配達員: 配達先に到着、配達完了
    → モバイルアプリ: POST /api/v1/deliveries/{deliveryId}/complete
-   → Delivery Service: complete処理実行（DELIVERED）
+   → Delivery Service: delivery_historyに DELIVERED レコード追加（recorded_by_driver_id = 配達員ID）
    → DeliveryCompletedEvent 発行
    → Kafka: delivery-response
 
@@ -399,18 +462,18 @@ PENDING → ASSIGNED → PICKED_UP → IN_TRANSIT → DELIVERED
 ```
 1. 配達員が見つからない場合:
    → NoAvailableDriverException
-   → 配達ステータスはPENDINGのまま
+   → Deliveryは作成されない
    → 定期的にリトライ（バックグラウンドジョブ）
 
 2. 配達員がキャンセルした場合:
    → モバイルアプリ: POST /api/v1/deliveries/{deliveryId}/cancel
-   → 配達を CANCELLED に更新
-   → 別の配達リクエストとして再作成（オプション）
-
-3. 配達失敗の場合:
+   → delivery_historyに CANCELLED レコード追加
    → DeliveryCancelledEvent 発行
    → Kafka: delivery-response（失敗）
-   → Order Service: 注文ステータスを DELIVERY_FAILED に更新
+
+3. 配達員の取り違いが発生した場合:
+   → 警告ログ出力
+   → 処理は継続するが、監視アラート対象
 ```
 
 ## 14. API設計（REST）
@@ -424,19 +487,21 @@ Response: DeliveryTrackingResponse
 ### 14.2 ピックアップ完了（配達員用モバイルアプリ）
 ```
 POST /api/v1/deliveries/{deliveryId}/pickup
+Request: { driverId }
 Response: DeliveryResponse
 ```
 
 ### 14.3 配達完了（配達員用モバイルアプリ）
 ```
 POST /api/v1/deliveries/{deliveryId}/complete
+Request: { driverId }
 Response: DeliveryResponse
 ```
 
 ### 14.4 配達キャンセル（配達員用モバイルアプリ）
 ```
 POST /api/v1/deliveries/{deliveryId}/cancel
-Request: { reason }
+Request: { driverId, reason }
 Response: DeliveryResponse
 ```
 
@@ -452,9 +517,9 @@ Response: List<DeliveryResponse>
 * 配達員の認証・認可
 * 割り当てられた配達の一覧表示
 * ピックアップ先・配達先の住所表示
-* ピックアップ完了ボタン → pickup API呼び出し
-* 配達完了ボタン → complete API呼び出し
-* キャンセルボタン → cancel API呼び出し
+* ピックアップ完了ボタン → pickup API呼び出し（driverIdを含む）
+* 配達完了ボタン → complete API呼び出し（driverIdを含む）
+* キャンセルボタン → cancel API呼び出し（driverIdとreasonを含む）
 * 顧客への電話連絡（電話番号の表示）
 
 ### 15.2 API認証
@@ -468,6 +533,7 @@ Response: List<DeliveryResponse>
 * 配達員割り当て: 3秒以内
 * トラッキング情報取得: 1秒以内
 * モバイルアプリからのAPI呼び出し: 2秒以内
+* 配達件数カウント: 100ms以内（インデックス活用）
 
 ### 16.2 可用性
 * サービス稼働率: 99.9%
@@ -477,11 +543,17 @@ Response: List<DeliveryResponse>
 * 複数インスタンスでの水平スケーリング対応
 * Kafka Consumer Groupによる負荷分散
 
+### 16.4 データ整合性
+* deliveriesテーブルはイミュータブル（INSERT のみ、UPDATE なし）
+* delivery_historyテーブルは追記のみ（INSERT のみ、DELETE なし）
+* トランザクション境界: Delivery + DeliveryHistory の同時保存
+
 ## 17. 今後の拡張ポイント
 
 * 配達員評価システム
-* 配達時間予測機能
+* 配達時間予測機能（機械学習）
 * 複数注文の同時配達（バッチ配達）
 * 配達料金計算機能
 * プッシュ通知機能（配達員・顧客への通知）
 * リアルタイム位置追跡（将来的にGPS連携）
+* 管理者による手動介入機能（delivery_historyに管理者情報を記録）
