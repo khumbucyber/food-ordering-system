@@ -41,7 +41,7 @@ restaurant-service
 
 **このプロジェクトの実装**:
 - **入出力ポート（インターフェース）**: `restaurant-application-service`に定義
-- **入力ポート（実装実装）（`*MessageListenerImpl`）**: `restaurant-application-service`に配置
+- **入力ポート（ポートの実装）（`*MessageListenerImpl`）**: `restaurant-application-service`に配置
 - **入力アダプター（`*KafkaListener`）**: `restaurant-messaging`に配置
 - **出力アダプター（`*RepositoryImpl`）**: `restaurant-dataaccess`に配置
 

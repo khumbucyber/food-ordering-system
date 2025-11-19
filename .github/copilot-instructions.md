@@ -46,6 +46,42 @@ public void setPrice(Money price) {
 }
 ```
 
+### Javadocコメント
+- **必須**: すべてのクラス、インターフェース、列挙型にJavadocコメントを記述すること
+- **必須**: すべてのpublicメソッドにJavadocコメントを記述すること（引数、戻り値を含む）
+- **推奨**: DTOクラスのフィールドにはインラインJavadocコメント（`/** コメント */`）を記述
+- **推奨**: 列挙型の各値にインラインJavadocコメントを記述
+
+```java
+/**
+ * 注文承認リクエストを処理する入力ポート
+ */
+public interface RestaurantApprovalRequestMessageListener {
+
+    /**
+     * 注文の承認処理を実行
+     * @param restaurantApprovalRequest 注文承認リクエスト
+     */
+    void approveOrder(RestaurantApprovalRequest restaurantApprovalRequest);
+}
+
+/**
+ * Order Serviceからの注文承認リクエストを表すDTO
+ */
+@Getter
+@Builder
+@AllArgsConstructor
+public class RestaurantApprovalRequest {
+
+    /** イベントID */
+    private String id;
+    /** Sagaトランザクション管理ID */
+    private String sagaId;
+    /** レストランID */
+    private String restaurantId;
+}
+```
+
 ### Builderパターン
 エンティティやDTOクラスには、静的内部クラスとしてBuilderパターンを実装してください。
 
@@ -205,6 +241,10 @@ com.food.ordering.system.{service}.service.domain
 3. **イミュータビリティ**: エンティティの重要なフィールドは`final`で宣言
 4. **例外処理**: ドメイン例外を適切に使用
 5. **ログ出力**: 重要な処理の開始・終了・エラー時にログを出力
+6. **タスク管理**: タスク完了時は`_Todo/`フォルダー内の該当タスクリストファイルを更新すること
+   - 進捗状況（完了数/総数）を更新
+   - タスクのステータスを「✅ 完了」に変更
+   - 作成したファイルや実装内容を記録
 
 ## 参考資料
 
