@@ -8,8 +8,9 @@ import org.springframework.stereotype.Component;
 import com.food.ordering.system.kafka.order.avro.model.OrderApprovalStatus;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
+import com.food.ordering.system.restaurant.service.domain.dto.Product;
 import com.food.ordering.system.restaurant.service.domain.dto.RestaurantApprovalRequest;
-import com.food.ordering.system.restaurant.service.domain.entity.Product;
+import com.food.ordering.system.restaurant.service.domain.dto.RestaurantOrderStatus;
 import com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent;
 import com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent;
 import com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent;
@@ -22,6 +23,7 @@ public class RestaurantMessagingDataMapper {
 
     /**
      * RestaurantApprovalRequestAvroModelをRestaurantApprovalRequestに変換
+     * resutaurant-serviceのdomainレイヤーに渡す承認要求データに変換する際に使用
      * @param restaurantApprovalRequestAvroModel Avroモデル
      * @return RestaurantApprovalRequest DTO
      */
@@ -32,10 +34,9 @@ public class RestaurantMessagingDataMapper {
             .sagaId(restaurantApprovalRequestAvroModel.getSagaId())
             .restaurantId(restaurantApprovalRequestAvroModel.getRestaurantId())
             .orderId(restaurantApprovalRequestAvroModel.getOrderId())
-            .restaurantOrderStatus(com.food.ordering.system.restaurant.service.domain.dto.RestaurantOrderStatus
-                .valueOf(restaurantApprovalRequestAvroModel.getRestaurantOrderStatus().name()))
+            .restaurantOrderStatus(RestaurantOrderStatus.valueOf(restaurantApprovalRequestAvroModel.getRestaurantOrderStatus().name()))
             .products(restaurantApprovalRequestAvroModel.getProducts().stream()
-                .map(avroProduct -> com.food.ordering.system.restaurant.service.domain.dto.Product.builder()
+                .map(avroProduct -> Product.builder()
                     .id(avroProduct.getId())
                     .quantity(avroProduct.getQuantity())
                     .build())
@@ -47,6 +48,7 @@ public class RestaurantMessagingDataMapper {
 
     /**
      * OrderApprovedEventをRestaurantApprovalResponseAvroModelに変換
+     * restaurant-serviceの承認結果(承認された)を外部へ送信するデータに変換する際に使用
      * @param orderApprovedEvent 承認イベント
      * @return RestaurantApprovalResponseAvroModel Avroモデル
      */
@@ -65,6 +67,7 @@ public class RestaurantMessagingDataMapper {
 
     /**
      * OrderRejectedEventをRestaurantApprovalResponseAvroModelに変換
+     * restaurant-serviceの承認結果(拒否された)を外部へ送信するデータに変換する際に使用
      * @param orderRejectedEvent 拒否イベント
      * @return RestaurantApprovalResponseAvroModel Avroモデル
      */

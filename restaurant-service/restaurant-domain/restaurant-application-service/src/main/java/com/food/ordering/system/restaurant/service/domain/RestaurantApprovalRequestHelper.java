@@ -7,13 +7,15 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.restaurant.service.domain.dto.RestaurantApprovalRequest;
 import com.food.ordering.system.restaurant.service.domain.entity.Restaurant;
 import com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent;
+import com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent;
+import com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent;
 import com.food.ordering.system.restaurant.service.domain.exception.RestaurantNotFoundException;
 import com.food.ordering.system.restaurant.service.domain.mapper.RestaurantDataMapper;
-import com.food.ordering.system.restaurant.service.domain.ports.output.message.publisher.RestaurantApprovalResponseMessagePublisher;
 import com.food.ordering.system.restaurant.service.domain.ports.output.repository.OrderApprovalRepository;
 import com.food.ordering.system.restaurant.service.domain.ports.output.repository.RestaurantRepository;
 
@@ -31,18 +33,21 @@ public class RestaurantApprovalRequestHelper {
     private final RestaurantDataMapper restaurantDataMapper;
     private final RestaurantRepository restaurantRepository;
     private final OrderApprovalRepository orderApprovalRepository;
-    private final RestaurantApprovalResponseMessagePublisher restaurantApprovalResponseMessagePublisher;
+    private final DomainEventPublisher<OrderApprovedEvent> orderApprovedEventPublisher;
+    private final DomainEventPublisher<OrderRejectedEvent> orderRejectedEventPublisher;
 
     public RestaurantApprovalRequestHelper(RestaurantDomainService restaurantDomainService,
                                            RestaurantDataMapper restaurantDataMapper,
                                            RestaurantRepository restaurantRepository,
                                            OrderApprovalRepository orderApprovalRepository,
-                                           RestaurantApprovalResponseMessagePublisher restaurantApprovalResponseMessagePublisher) {
+                                           DomainEventPublisher<OrderApprovedEvent> orderApprovedEventPublisher,
+                                           DomainEventPublisher<OrderRejectedEvent> orderRejectedEventPublisher) {
         this.restaurantDomainService = restaurantDomainService;
         this.restaurantDataMapper = restaurantDataMapper;
         this.restaurantRepository = restaurantRepository;
         this.orderApprovalRepository = orderApprovalRepository;
-        this.restaurantApprovalResponseMessagePublisher = restaurantApprovalResponseMessagePublisher;
+        this.orderApprovedEventPublisher = orderApprovedEventPublisher;
+        this.orderRejectedEventPublisher = orderRejectedEventPublisher;
     }
 
     /**
@@ -54,13 +59,17 @@ public class RestaurantApprovalRequestHelper {
         log.info("Processing restaurant approval for order id: {}", restaurantApprovalRequest.getOrderId());
         List<String> failureMessages = new ArrayList<>();
         Restaurant restaurant = findRestaurant(restaurantApprovalRequest);
-        OrderApprovalEvent orderApprovalEvent = 
+        // 注文の検証と承認イベントの生成
+        // orderApprovalEventにはOrderApprovedEventまたはOrderRejectedEventが入る
+        OrderApprovalEvent orderApprovalEvent =
             this.restaurantDomainService.validateOrder(
-                restaurant, 
-                failureMessages);
+                restaurant,
+                failureMessages,
+                this.orderApprovedEventPublisher,
+                this.orderRejectedEventPublisher);
         this.orderApprovalRepository.save(restaurant.getOrderApproval());
-        
-        this.restaurantApprovalResponseMessagePublisher.publish(orderApprovalEvent);
+
+        orderApprovalEvent.fire();
     }
 
     /**

@@ -1,0 +1,378 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] restaurant-service                                                 [pom]
+[[1;34mINFO[m] restaurant-domain                                                  [pom]
+[[1;34mINFO[m] restaurant-domain-core                                             [jar]
+[[1;34mINFO[m] restaurant-application-service                                     [jar]
+[[1;34mINFO[m] restaurant-dataaccess                                              [jar]
+[[1;34mINFO[m] restaurant-messaging                                               [jar]
+[[1;34mINFO[m] restaurant-container                                               [jar]
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------< [0;36mcom.food.ordering.system:restaurant-service[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding restaurant-service 1.0-SNAPSHOT                           [1/7][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.1.0:clean[m [1m(default-clean)[m @ [36mrestaurant-service[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-install-plugin:2.5.2:install[m [1m(default-install)[m @ [36mrestaurant-service[0;1m ---[m
+[[1;34mINFO[m] Installing /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/pom.xml to /home/khumbucyber/.m2/repository/com/food/ordering/system/restaurant-service/1.0-SNAPSHOT/restaurant-service-1.0-SNAPSHOT.pom
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36mcom.food.ordering.system:restaurant-domain[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding restaurant-domain 1.0-SNAPSHOT                            [2/7][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.1.0:clean[m [1m(default-clean)[m @ [36mrestaurant-domain[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-install-plugin:2.5.2:install[m [1m(default-install)[m @ [36mrestaurant-domain[0;1m ---[m
+[[1;34mINFO[m] Installing /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/pom.xml to /home/khumbucyber/.m2/repository/com/food/ordering/system/restaurant-domain/1.0-SNAPSHOT/restaurant-domain-1.0-SNAPSHOT.pom
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------< [0;36mcom.food.ordering.system:restaurant-domain-core[0;1m >-----------[m
+[[1;34mINFO[m] [1mBuilding restaurant-domain-core 1.0-SNAPSHOT                       [3/7][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.1.0:clean[m [1m(default-clean)[m @ [36mrestaurant-domain-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.2.0:resources[m [1m(default-resources)[m @ [36mrestaurant-domain-core[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered properties files.
+[[1;34mINFO[m] skip non existing resourceDirectory /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/resources
+[[1;34mINFO[m] skip non existing resourceDirectory /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.9.0:compile[m [1m(default-compile)[m @ [36mrestaurant-domain-core[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 12 source files to /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/target/classes
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[7,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[4,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[5,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/valueobject/OrderApprovalId.java:[5,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/valueobject/OrderApprovalId.java:[7,38] cannot find symbol
+  symbol: class BaseId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[13,19] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[18,30] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[31,12] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[22,19] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[23,19] cannot find symbol
+  symbol:   class OrderId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[24,19] cannot find symbol
+  symbol:   class OrderApprovalStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[33,12] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[37,12] cannot find symbol
+  symbol:   class OrderId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[41,12] cannot find symbol
+  symbol:   class OrderApprovalStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[51,17] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[52,17] cannot find symbol
+  symbol:   class OrderId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[53,17] cannot find symbol
+  symbol:   class OrderApprovalStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[60,37] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[65,32] cannot find symbol
+  symbol:   class OrderId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[70,39] cannot find symbol
+  symbol:   class OrderApprovalStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[7,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[8,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[19,47] cannot find symbol
+  symbol: class RestaurantId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[11,19] cannot find symbol
+  symbol:   class DomainEventPublisher
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[14,30] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[17,30] cannot find symbol
+  symbol:   class DomainEventPublisher
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[11,19] cannot find symbol
+  symbol:   class DomainEventPublisher
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[14,30] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[17,30] cannot find symbol
+  symbol:   class DomainEventPublisher
+  location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[7,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[8,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[10,45] cannot find symbol
+  symbol: class OrderId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[54,40] cannot find symbol
+  symbol:   class OrderApprovalStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Restaurant
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[84,17] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Restaurant.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[89,37] cannot find symbol
+  symbol:   class RestaurantId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Restaurant.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[12,13] cannot find symbol
+  symbol:   class OrderStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[13,13] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[4,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[5,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[7,41] cannot find symbol
+  symbol: class ProductId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[23,12] cannot find symbol
+  symbol:   class OrderStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[27,12] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[40,17] cannot find symbol
+  symbol:   class OrderId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[41,17] cannot find symbol
+  symbol:   class OrderStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[42,17] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[45,32] cannot find symbol
+  symbol:   class OrderId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[50,36] cannot find symbol
+  symbol:   class OrderStatus
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[55,36] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[10,13] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[22,74] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[32,12] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[49,17] cannot find symbol
+  symbol:   class ProductId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[51,17] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[55,34] cannot find symbol
+  symbol:   class ProductId
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[65,30] cannot find symbol
+  symbol:   class Money
+  location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/RestaurantDomainServiceImpl.java:[7,39] cannot find symbol
+  symbol:   class DomainConstants
+  location: package com.food.ordering.system.domain
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/RestaurantDomainServiceImpl.java:[9,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;34mINFO[m] 62 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary for restaurant-service 1.0-SNAPSHOT:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] restaurant-service ................................. [1;32mSUCCESS[m [  0.784 s]
+[[1;34mINFO[m] restaurant-domain .................................. [1;32mSUCCESS[m [  0.055 s]
+[[1;34mINFO[m] restaurant-domain-core ............................. [1;31mFAILURE[m [ 14.957 s]
+[[1;34mINFO[m] restaurant-application-service ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] restaurant-dataaccess .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] restaurant-messaging ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] restaurant-container ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  17.063 s
+[[1;34mINFO[m] Finished at: 2025-11-24T08:19:26+09:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.9.0:compile[m [1m(default-compile)[m on project [36mrestaurant-domain-core[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[7,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[4,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[5,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/valueobject/OrderApprovalId.java:[5,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/valueobject/OrderApprovalId.java:[7,38] cannot find symbol
+[[1;31mERROR[m]   symbol: class BaseId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[13,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[18,30] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovalEvent.java:[31,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[22,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[23,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[24,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderApprovalStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[33,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[37,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[41,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderApprovalStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[51,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[52,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[53,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderApprovalStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[60,37] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[65,32] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderApproval.java:[70,39] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderApprovalStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderApproval.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[7,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[8,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[19,47] cannot find symbol
+[[1;31mERROR[m]   symbol: class RestaurantId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[11,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   class DomainEventPublisher
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[14,30] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderRejectedEvent.java:[17,30] cannot find symbol
+[[1;31mERROR[m]   symbol:   class DomainEventPublisher
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[11,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   class DomainEventPublisher
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[14,30] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/event/OrderApprovedEvent.java:[17,30] cannot find symbol
+[[1;31mERROR[m]   symbol:   class DomainEventPublisher
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[6,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[7,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[8,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[10,45] cannot find symbol
+[[1;31mERROR[m]   symbol: class OrderId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[54,40] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderApprovalStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Restaurant
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[84,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Restaurant.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Restaurant.java:[89,37] cannot find symbol
+[[1;31mERROR[m]   symbol:   class RestaurantId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Restaurant.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[12,13] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[13,13] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[4,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[5,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[7,41] cannot find symbol
+[[1;31mERROR[m]   symbol: class ProductId
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[23,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[27,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[40,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[41,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[42,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[45,32] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[50,36] cannot find symbol
+[[1;31mERROR[m]   symbol:   class OrderStatus
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/OrderDetail.java:[55,36] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.OrderDetail.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[10,13] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[22,74] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[32,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[49,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class ProductId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[51,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[55,34] cannot find symbol
+[[1;31mERROR[m]   symbol:   class ProductId
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/entity/Product.java:[65,30] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Money
+[[1;31mERROR[m]   location: class com.food.ordering.system.restaurant.service.domain.entity.Product.Builder
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/RestaurantDomainServiceImpl.java:[7,39] cannot find symbol
+[[1;31mERROR[m]   symbol:   class DomainConstants
+[[1;31mERROR[m]   location: package com.food.ordering.system.domain
+[[1;31mERROR[m] /mnt/c/Users/khumb/Code/food-ordering-system/restaurant-service/restaurant-domain/restaurant-domain-core/src/main/java/com/food/ordering/system/restaurant/service/domain/RestaurantDomainServiceImpl.java:[9,51] package com.food.ordering.system.domain.valueobject does not exist
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[[1;31mERROR[m] 
+[[1;31mERROR[m] After correcting the problems, you can resume the build with the command
+[[1;31mERROR[m]   [1mmvn <args> -rf :restaurant-domain-core[m
