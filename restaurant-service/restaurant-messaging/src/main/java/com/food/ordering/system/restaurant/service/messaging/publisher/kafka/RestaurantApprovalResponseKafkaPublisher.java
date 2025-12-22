@@ -2,14 +2,11 @@ package com.food.ordering.system.restaurant.service.messaging.publisher.kafka;
 
 import org.springframework.stereotype.Component;
 
-import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import com.food.ordering.system.kafka.producer.helper.KafkaMessageHelper;
 import com.food.ordering.system.kafka.producer.service.KafkaProducer;
 import com.food.ordering.system.restaurant.service.domain.config.RestaurantServiceConfigData;
 import com.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent;
-import com.food.ordering.system.restaurant.service.domain.event.OrderApprovedEvent;
-import com.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent;
 import com.food.ordering.system.restaurant.service.domain.ports.output.message.publisher.RestaurantApprovalResponseMessagePublisher;
 import com.food.ordering.system.restaurant.service.messaging.mapper.RestaurantMessagingDataMapper;
 
